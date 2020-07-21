@@ -4,7 +4,8 @@ From game
 
 ```
 Assembly-CSharp.dll
-Assembly-CSharp-firstpass.dll
+DialogueSystem.dll
+I2Localization.dll
 UnityEngine.dll
 UnityEngine.CoreModule.dll
 UnityEngine.ImageConversionModule
