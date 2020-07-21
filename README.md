@@ -10,6 +10,8 @@ This plugin hooks translation request(`I2.Loc.LocalizationManager.GetTranslation
 
 ## Usage
 
+Set game language to Chinese.
+
 Press <kbd>Alt</kbd> + <kbd>T</kbd> (configurable) to open GUI window. Press again to close.
 
 ## Features

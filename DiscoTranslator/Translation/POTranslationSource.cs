@@ -11,7 +11,6 @@ namespace DiscoTranslator.Translation
         public string POFilePath { get; set; }
 
         public string Name { get; private set; } = string.Empty;
-        public bool SourceTranslationAvailable { get; private set; } = false;
 
         public bool LoadUntranslated { get; set; }
 
@@ -77,7 +76,7 @@ namespace DiscoTranslator.Translation
         {
             if (TranslationData.TryGetValue(Key, out var TranslationEntry))
             {
-                if (EnableStrNo)
+                if (EnableStrNo && TranslationManager.EnableStringNumber)
                     Translation = string.Format("{0}{1}:{2}", StrNoPrefix, TranslationEntry.StrNo, TranslationEntry.Translation);
                 else
                     Translation = TranslationEntry.Translation;

@@ -96,6 +96,8 @@ namespace DiscoTranslator.Translation
 
             foreach (var conversation in db.conversations)
             {
+                string conversationArticyId = Field.LookupValue(conversation.fields, "Articy Id");
+
                 foreach (var dialogue in conversation.dialogueEntries)
                 {
                     foreach (var field in dialogue.fields)
@@ -105,7 +107,9 @@ namespace DiscoTranslator.Translation
                         if (!DialogueTranslatableFields.Contains(field.title))
                             continue;
 
-                        string key = $"{field.title}/{Field.LookupValue(dialogue.fields, "Articy Id")}";
+                        string dialogueArticyId = Field.LookupValue(dialogue.fields, "Articy Id");
+
+                        string key = $"{field.title}/{dialogueArticyId}";
                         string source = field.value;
 
                         var entry = new POSingularEntry(new POKey(source, contextId: key))
@@ -113,12 +117,17 @@ namespace DiscoTranslator.Translation
                             Comments = new List<POComment>()
                         };
 
-                        entry.Comments.Add(new POTranslatorComment { Text = $"Title = {conversation.Title}" });
-                        entry.Comments.Add(new POTranslatorComment { Text = $"Description = {conversation.Description.Replace("\n", "\\n")}" });
+                        string location = $"Conversation/{conversationArticyId}";
+
+                        entry.Comments.Add(new POReferenceComment() { References = new List<POSourceReference>(new POSourceReference[] { new POSourceReference(location, 1) }) });
+
+                        entry.Comments.Add(new POExtractedComment { Text = $"Conversation/{conversation.id}/Dialogue/{dialogue.id}/{field.title}" });
+                        entry.Comments.Add(new POExtractedComment { Text = $"Title = {conversation.Title}" });
+                        // entry.Comments.Add(new POTranslatorComment { Text = $"Description = {conversation.Description.Replace("\n", "\\n")}" });
                         if (actors.TryGetValue(dialogue.ActorID, out Actor actor))
-                            entry.Comments.Add(new POTranslatorComment { Text = $"Actor = {actor.Name}" });
-                        if (actors.TryGetValue(dialogue.ConversantID, out Actor conversant))
-                            entry.Comments.Add(new POTranslatorComment { Text = $"Conversant = {conversant.Name}" });
+                            entry.Comments.Add(new POExtractedComment { Text = $"Actor = {actor.Name}" });
+                        // if (actors.TryGetValue(dialogue.ConversantID, out Actor conversant))
+                        //     entry.Comments.Add(new POExtractedComment { Text = $"Conversant = {conversant.Name}" });
 
                         catalog.Add(entry);
                     }

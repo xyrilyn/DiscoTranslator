@@ -10,6 +10,7 @@ namespace DiscoTranslator.Translation
         public static event Action<BepInEx.Logging.LogLevel, string> LogEvent;
 
         public static bool EnableTranslation { get; set; } = true;
+        public static bool EnableStringNumber { get; set; } = false;
 
         public static void Log(BepInEx.Logging.LogLevel level, string message)
         {

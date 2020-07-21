@@ -25,11 +25,6 @@
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\Lib\Assembly-CSharp.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\Lib\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>false</Private>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>..\Lib\BepInEx.dll</HintPath>
@@ -38,6 +33,12 @@
     <Reference Include="BepInEx.Harmony">
       <HintPath>..\Lib\BepInEx.Harmony.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="DialogueSystem">
+      <HintPath>..\Lib\DialogueSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="l2Localization">
+      <HintPath>..\Lib\l2Localization.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\Lib\UnityEngine.dll</HintPath>
